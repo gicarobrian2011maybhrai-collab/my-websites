@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Closing Solutions | Contractor Portal Mockup</title>
+    <style>
+        :root {
+            --primary: #0F172A; /* Dark Navy */
+            --secondary: #2563EB; /* Blue */
+            --accent: #F97316; /* Orange */
+            --bg-light: #F8FAFC;
+            --text-main: #334155;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+
+            /* Interactive Form Variables */
+            --navy:#12318f;
+            --navy-deep:#0c2266;
+            --sky:#2ec4f1;
+            --sky-soft:#e7f8fe;
+            --ink:#0f1b3d;
+            --ink-soft:#5b6584;
+            --paper:#f5f7fc;
+            --line:#e2e6f2;
+            --good:#1fa672;
+            --shadow-1:0 1px 2px rgba(15,27,61,0.04);
+            --shadow-2:0 4px 10px rgba(15,27,61,0.06);
+            --shadow-3:0 12px 24px rgba(15,27,61,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--secondary);
+        }
+        .header-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .header-btn:hover { background-color: var(--secondary); }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1541888081622-1b1e43d1fb52?auto=format&fit=crop&q=80&w=1920') center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-pre {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .hero h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            color: #CBD5E1;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background-color: #EA580C; }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 13px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 30px;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #E2E8F0;
+        }
+
+        /* Direct Answer Section */
+        .section-padding { padding: 80px 0; }
+        .direct-answer {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .direct-answer-content { flex: 1; }
+        .direct-answer-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .direct-answer-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Benefits Grid */
+        .bg-light { background-color: var(--bg-light); }
+        .text-center { text-align: center; }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .benefit-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary);
+        }
+        .benefit-card h3 { font-size: 1.25rem; margin-bottom: 15px; }
+
+        /* Interactive Multi-Step Form Styles */
+        .form-section-wrapper {
+            background: var(--paper);
+            padding: 80px 20px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        .form-wrap { max-width: 640px; margin: 0 auto; text-align: left; }
+        
+        .progress { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:28px; }
+        .p-step { display:flex; align-items:center; gap:8px; }
+        .p-dot {
+            width:26px; height:26px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:12px; font-weight:700; color:var(--ink-soft);
+            background:var(--white); border:2px solid var(--line);
+            transition: all .3s ease;
+        }
+        .p-label { font-size:12px; font-weight:600; color:var(--ink-soft); white-space:nowrap; transition:color .3s ease; }
+        .p-line { width:36px; height:2px; background:var(--line); margin:0 6px; position:relative; overflow:hidden; }
+        .p-line::after {
+            content:""; position:absolute; inset:0; background:var(--good);
+            transform:scaleX(0); transform-origin:left; transition:transform .5s cubic-bezier(.16,.8,.3,1);
+        }
+        .p-step.active .p-dot { background:var(--navy); border-color:var(--navy); color:#fff; box-shadow:0 0 0 4px rgba(18,49,143,0.12); transform:scale(1.12); }
+        .p-step.active .p-label { color:var(--navy-deep); }
+        .p-step.done .p-dot { background:var(--good); border-color:var(--good); color:#fff; }
+        .p-step.done .p-label { color:var(--ink); }
+        .p-step.done + .p-line::after { transform:scaleX(1); }
+
+        .form-card {
+            background:var(--white);
+            border:1px solid var(--line);
+            border-radius:20px;
+            box-shadow:var(--shadow-3), var(--shadow-1);
+            padding:34px 30px 28px;
+            position:relative;
+            overflow:hidden;
+        }
+        .form-card::before {
+            content:""; position:absolute; top:0; left:0; right:0; height:4px;
+            background:linear-gradient(90deg,var(--navy),var(--sky),var(--navy));
+            background-size:200% 100%;
+            animation:sheen 6s linear infinite;
+        }
+        @keyframes sheen { from{background-position:0% 0;} to{background-position:200% 0;} }
+        
+        .eyebrow-form { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--sky); margin:6px 0 8px; }
+        .form-card h3 { font-size:24px; line-height:1.25; margin:0 0 8px; color:var(--navy-deep); letter-spacing:-0.3px; }
+        .form-sub { font-size:14.5px; color:var(--ink-soft); margin:0 0 24px; line-height:1.55; }
+
+        fieldset { border:none; padding:0; margin:0 0 22px; }
+        legend { font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:12px; padding:0; }
+
+        .options { display:flex; flex-direction:column; gap:10px; }
+        .opt {
+            display:flex; align-items:flex-start; gap:12px;
+            border:1.5px solid var(--line); border-radius:14px;
+            padding:14px 44px 14px 16px; cursor:pointer;
+            transition: all .2s ease;
+            background:var(--white);
+            position:relative;
+        }
+        .opt:hover { border-color:var(--sky); background:var(--sky-soft); transform:translateY(-1px); }
+        .opt input { margin-top:3px; accent-color:var(--navy); width:16px; height:16px; flex-shrink:0; cursor:pointer; }
+        .opt-text strong { display:block; font-size:14.5px; color:var(--ink); margin-bottom:2px; }
+        .opt-text span { display:block; font-size:13px; color:var(--ink-soft); line-height:1.4; }
+        .opt:has(input:checked) {
+            border-color:var(--navy); background:var(--sky-soft);
+            box-shadow:0 0 0 3px rgba(18,49,143,0.08);
+        }
+
+        .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .field { margin-bottom:16px; }
+        .field label { display:block; font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+        .field input, .field select, .field textarea {
+            width:100%; border:1.5px solid var(--line); border-radius:10px;
+            padding:11px 13px; font-size:14.5px; font-family:inherit; color:var(--ink);
+            background:var(--white); transition: all .2s ease;
+        }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(18,49,143,0.10);
+            transform:translateY(-1px);
+        }
+        .field textarea { resize:vertical; min-height:80px; }
+        .hint { font-size:12px; color:var(--ink-soft); margin-top:5px; }
+
+        .actions { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:6px; }
+        .btn-back { background:none; border:none; color:var(--ink-soft); font-weight:600; font-size:13.5px; cursor:pointer; padding:10px 6px; }
+        .btn-back:hover { color:var(--navy); }
+        
+        .form-step { display:none; }
+        .form-step.active { display:block; animation:slideIn .4s cubic-bezier(.16,.8,.3,1); }
+        @keyframes slideIn { from{opacity:0;transform:translateX(18px);} to{opacity:1;transform:translateX(0);} }
+
+        .call-strip {
+            text-align:center; margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
+            font-size:13px; color:var(--ink-soft);
+        }
+        .call-strip a { color:var(--navy); font-weight:700; text-decoration:none; }
+        .call-strip a:hover { text-decoration:underline; }
+
+        .confirm { text-align:center; padding:20px 4px 8px; }
+        .confirm-badge {
+            width:56px; height:56px; border-radius:50%; margin:0 auto 18px;
+            background:linear-gradient(135deg,var(--good),#12b381);
+            display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-3);
+        }
+        .confirm-badge svg { width:26px; height:26px; stroke:#fff; }
+        .confirm-summary {
+            text-align:left; background:var(--paper); border:1px solid var(--line);
+            border-radius:14px; padding:16px 18px; margin:22px 0; font-size:13.5px; color:var(--ink);
+        }
+        .confirm-summary div { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--line); }
+        .confirm-summary div:last-child { border-bottom:none; }
+        .confirm-summary b { color:var(--ink-soft); font-weight:600; }
+
+        /* Process Steps */
+        .process-steps {
+            max-width: 800px;
+            margin: 50px auto 0 auto;
+        }
+        .step {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+        .step-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            background: #FFF7ED;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .step-content h3 { margin-bottom: 5px; font-size: 1.2rem; }
+        .step-content p { color: var(--text-light); margin: 0; }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .comparison-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+        .comparison-table th:first-child { width: 25%; background-color: #1E293B; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .tcs-col {
+            background-color: #EFF6FF;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .review-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .stars { color: #F59E0B; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .final-cta h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
+        .final-cta p { font-size: 1.1rem; color: #CBD5E1; max-width: 600px; margin: 0 auto 40px auto; }
+
+        /* Footer */
+        footer {
+            background-color: #0B1120;
+            color: #94A3B8;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .footer-links a { color: #94A3B8; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-btns { flex-direction: column; }
+            .direct-answer { flex-direction: column; }
+            .comparison-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Total Closing <span>Solutions</span></div>
+            <a href="#" class="header-btn">Schedule Session</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-pre">Virtual Notary & Permit Services for Contractors</span>
+            <h1>Removing paperwork hurdles, so you can build faster.</h1>
+            <p>Seamless permit filing, Notice of Commencement (NOC) prep, and Remote Online Notarization (RON). Get your docs legally stamped without ever leaving the job site.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Schedule Your Session</a>
+                <a href="#" class="btn-outline">Scan QR to Begin</a>
+            </div>
+            
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <span>✓</span> 100% Legal & Compliant
+                </div>
+                <div class="trust-item">
+                    <span>✓</span> MISMO-Certified RON
+                </div>
+                <div class="trust-item">
+                    <span>✓</span> 24/7 Rapid Turnaround
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container direct-answer">
+            <div class="direct-answer-content">
+                <h2>Why use a specialized virtual notary for contractor permits?</h2>
+                <p>General notaries don't understand construction documents. We do. Total Closing Solutions specializes in high-stakes contractor filings. We handle the complex paperwork, verify identities remotely, and provide the tamper-evident digital seals you need to get your permits approved—preventing costly technical delays at the building department.</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">Helping contractors close permits in minutes, not days.</p>
+            </div>
+            <div class="direct-answer-image">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?auto=format&fit=crop&q=80&w=800" alt="Contractor looking at plans">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2>Built for the speed of construction.</h2>
+                <p style="color: var(--text-light);">We've designed our platform to keep your crews moving.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">⏱️</div>
+                    <h3>Zero Travel Time</h3>
+                    <p>No driving to a notary office. Connect instantly via your phone from the job site. Flexible scheduling with agents ready in minutes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">✓</div>
+                    <h3>Error-Free Filings</h3>
+                    <p>We specialize in contractor docs. We catch the nuances that general notaries miss, eliminating permit rejections and closing delays.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🔒</div>
+                    <h3>Bank-Grade Security</h3>
+                    <p>Tamper-evident digital seals with complete KBA identity verification and audio audit trails. 100% compliant with state digital guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW INTERACTIVE FORM SECTION PLACED ABOVE "FIVE STEPS" -->
+    <section class="form-section-wrapper">
+        <div class="container form-wrap">
+            <div class="text-center" style="margin-bottom: 35px;">
+                <h2 style="color: var(--navy-deep); font-size: 2.2rem; margin-bottom: 10px;">Start Your Closing</h2>
+                <p style="color: var(--ink-soft); font-size: 1.1rem;">Secure your virtual notary session in minutes to keep your permits moving.</p>
+            </div>
+
+            <div class="progress" id="progressBar">
+                <div class="p-step active" data-step="1"><div class="p-dot">1</div><div class="p-label">Service</div></div>
+                <div class="p-line"></div>
+                <div class="p-step" data-step="2"><div class="p-dot">2</div><div class="p-label">You</div></div>
+                <div class="p-line"></div>
+                <div class="p-step" data-step="3"><div class="p-dot">3</div><div class="p-label">Transaction</div></div>
+            </div>
+
+            <form class="form-card" id="intakeForm" novalidate>
+                <!-- STEP 1 -->
+                <div class="form-step active" id="step-1">
+                    <div class="eyebrow-form">Intake &amp; Lock</div>
+                    <h3>Let's get your closing scheduled.</h3>
+                    <p class="form-sub">Just a few quick questions — most sessions are booked within 24 hours.</p>
+
+                    <fieldset>
+                        <legend>Which service do you need?</legend>
+                        <div class="options">
+                            <label class="opt">
+                                <input type="radio" name="service" value="Contractor Services" checked required>
+                                <span class="opt-text"><strong>Contractor Services</strong><span>Document notarization tied to a contractor or property project.</span></span>
+                            </label>
+                            <label class="opt">
+                                <input type="radio" name="service" value="Virtual Notary (eClosing)">
+                                <span class="opt-text"><strong>Virtual Notary (eClosing)</strong><span>Remote Online Notarization for a signing, deed, or estate document.</span></span>
+                            </label>
+                            <label class="opt">
+                                <input type="radio" name="service" value="Title & Escrow Services">
+                                <span class="opt-text"><strong>Title &amp; Escrow Services</strong><span>You're a title or escrow professional coordinating a closing.</span></span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="actions" style="justify-content:flex-end;">
+                        <button type="button" class="btn-primary" onclick="goTo(2)">Continue →</button>
+                    </div>
+
+                    <div class="call-strip">Prefer to talk to someone? <a href="tel:+18773698350">Call us at (877) 369-8350</a></div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="form-step" id="step-2">
+                    <div class="eyebrow-form">Step 2 of 3</div>
+                    <h3>A little about you.</h3>
+                    <p class="form-sub">We'll use this to confirm your session and send your secure signing link.</p>
+
+                    <div class="grid2">
+                        <div class="field">
+                            <label for="firstName">First name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="field">
+                            <label for="lastName">Last name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <div class="hint">We'll text you if your signer or agent needs to reach you before the session.</div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="btn-back" onclick="goTo(1)">← Back</button>
+                        <button type="button" class="btn-primary" onclick="goTo(3)">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="form-step" id="step-3">
+                    <div class="eyebrow-form">Step 3 of 3</div>
+                    <h3>Your transaction.</h3>
+                    <p class="form-sub">Help us prep your session so signing takes minutes, not hours.</p>
+
+                    <div class="grid2">
+                        <div class="field">
+                            <label for="docType">Document type</label>
+                            <select id="docType" name="docType" required>
+                                <option value="" disabled selected>Select one</option>
+                                <option>Contractor / Permit Document</option>
+                                <option>Real Estate Closing / Deed</option>
+                                <option>Estate Planning (Will, Trust, POA)</option>
+                                <option>Loan / Refinance Documents</option>
+                                <option>Other Legal Document</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="closingDate">Preferred date</label>
+                            <input type="date" id="closingDate" name="closingDate">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="propState">State where property/matter is located</label>
+                        <input type="text" id="propState" name="propState" placeholder="e.g. Florida">
+                    </div>
+                    <div class="field">
+                        <label for="notes">Anything else we should know?</label>
+                        <textarea id="notes" name="notes" placeholder="Number of signers, witness needs, timing constraints, etc."></textarea>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="btn-back" onclick="goTo(2)">← Back</button>
+                        <button type="submit" class="btn-primary">Submit &amp; Lock My Slot ✓</button>
+                    </div>
+                </div>
+
+                <!-- CONFIRMATION -->
+                <div class="form-step" id="step-confirm">
+                    <div class="confirm">
+                        <div class="confirm-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        <div class="eyebrow-form" style="text-align:center;">You're on the calendar</div>
+                        <h3>Thanks — we've got it from here.</h3>
+                        <p class="form-sub">A member of our team will confirm your session and send your secure signing link shortly.</p>
+                        <div class="confirm-summary" id="summaryBox"></div>
+                        <div class="call-strip">Need this sooner? <a href="tel:+18773698350">Call us at (877) 369-8350</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2>Five steps to your permit approval.</h2>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Upload Your Docs</h3>
+                        <p>Send your permit applications, NOCs, or lien waivers through our secure portal.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Identity Verification</h3>
+                        <p>Complete a quick Knowledge-Based Authentication (KBA) check directly from your phone.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Connect Live</h3>
+                        <p>Jump on a secure video session with Garrett or one of our certified virtual agents.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>E-Sign & Seal</h3>
+                        <p>Review and digitally sign. We apply our tamper-evident notary seal on the spot.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>File Your Permit</h3>
+                        <p>You receive the finalized, compliant documents instantly, ready to hand off to the building department.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2>Traditional Notary vs. Total Closing Solutions</h2>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Traditional Walk-in Notary</th>
+                        <th class="tcs-col" style="background-color: var(--secondary); color: white;">TCS Virtual Services</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Location</strong></td>
+                        <td>Drive to their office</td>
+                        <td class="tcs-col">Anywhere (From the job site)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scheduling</strong></td>
+                        <td>Fixed business hours</td>
+                        <td class="tcs-col">24/7 Rapid Turnaround</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expertise</strong></td>
+                        <td>General documents</td>
+                        <td class="tcs-col">Real Estate & Contractor specialized</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>Physical stamp (can be lost/faked)</td>
+                        <td class="tcs-col">Tamper-evident digital seal & KBA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Turnaround</strong></td>
+                        <td>Hours wasted off-site</td>
+                        <td class="tcs-col">Completed in minutes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2>Trusted by Contractors & Builders Nationwide.</h2>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Garrett and his team are a lifesaver. We used to lose half a day getting NOCs notarized. Now my supers do it from the truck in 10 minutes."</p>
+                    <p style="margin-top: 15px; font-weight: 600;">- Mark T., General Contractor</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Finally, a notary that actually understands construction permit documents. They caught a missing field that would have delayed our foundation pour by a week."</p>
+                    <p style="margin-top: 15px; font-weight: 600;">- Sarah H., Project Manager</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Fast, secure, and incredibly convenient. We run all our high-stakes real estate and contractor paperwork through Total Closing Solutions now."</p>
+                    <p style="margin-top: 15px; font-weight: 600;">- David R., Custom Home Builder</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop letting paperwork delay your starts.</h2>
+            <p>Don't let a missing signature derail your permit. Book a session with Garrett for a fast, accurate, and fully compliant notarization experience.</p>
+            <a href="#" class="btn-primary" style="background-color: var(--white); color: var(--primary);">Schedule Your Session Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p>NEAR ME NOTARY LLC d/b/a Total Closing Solutions | 5922 9th Ave N, St. Petersburg, FL 33710</p>
+            <p>info@lc.totalclosingsolutions.com | +1 877-369-8350</p>
+            <p style="margin-top: 20px;">© 2026 Total Closing Solutions LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateProgress(current){
+            document.querySelectorAll('.p-step').forEach(el=>{
+                const s = parseInt(el.dataset.step);
+                el.classList.remove('active','done');
+                if(s < current) el.classList.add('done');
+                if(s === current) el.classList.add('active');
+            });
+        }
+
+        function goTo(stepNum){
+            if(stepNum === 2){
+                const service = document.querySelector('input[name="service"]:checked');
+                if(!service) return;
+            }
+            if(stepNum === 3){
+                const first = document.getElementById('firstName').value;
+                const last = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                if(!first || !last || !email || !phone) return;
+            }
+
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-'+stepNum).classList.add('active');
+            
+            if(stepNum <= 3) {
+                document.getElementById('progressBar').style.display = 'flex';
+                updateProgress(stepNum);
+            }
+        }
+
+        document.getElementById('intakeForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const docType = document.getElementById('docType').value;
+            if(!docType) return;
+
+            const data = {
+                service: document.querySelector('input[name="service"]:checked')?.value || '',
+                name: (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim(),
+                email: document.getElementById('email').value,
+                docType: docType,
+                date: document.getElementById('closingDate').value || 'Flexible'
+            };
+
+            document.getElementById('summaryBox').innerHTML = `
+                <div><b>Service</b><span>${data.service}</span></div>
+                <div><b>Name</b><span>${data.name}</span></div>
+                <div><b>Email</b><span>${data.email}</span></div>
+                <div><b>Document</b><span>${data.docType}</span></div>
+                <div><b>Preferred Date</b><span>${data.date}</span></div>
+            `;
+
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-confirm').classList.add('active');
+            document.getElementById('progressBar').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
