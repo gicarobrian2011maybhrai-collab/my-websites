@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Total Closing Solutions | Contractor Portal Mockup</title>
+    <title>Total Closing Solutions | Contractor Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0F172A; /* Dark Navy */
@@ -14,19 +15,37 @@
             --text-light: #64748B;
             --white: #FFFFFF;
 
-            /* Interactive Form Variables */
-            --navy:#12318f;
-            --navy-deep:#0c2266;
-            --sky:#2ec4f1;
-            --sky-soft:#e7f8fe;
-            --ink:#0f1b3d;
-            --ink-soft:#5b6584;
-            --paper:#f5f7fc;
-            --line:#e2e6f2;
-            --good:#1fa672;
-            --shadow-1:0 1px 2px rgba(15,27,61,0.04);
-            --shadow-2:0 4px 10px rgba(15,27,61,0.06);
-            --shadow-3:0 12px 24px rgba(15,27,61,0.08);
+            /* Enhanced Interactive Form Variables & Glassmorphism */
+            --navy:#0B132B;
+            --navy-deep:#1C2541;
+            --sky:#00B4D8;
+            --sky-soft:#E0FBFC;
+            --ink:#0B132B;
+            --ink-soft:#475569;
+            --paper:#F1F5F9;
+            --line:#CBD5E1;
+            --good:#10B981;
+            --shadow-subtle: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
+            --shadow-hover: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* PORTAL (LIGHT THEME) SPECIFIC VARIABLES */
+            --ptl-primary: #0F172A; 
+            --ptl-secondary: #2563EB; 
+            --ptl-secondary-light: #EFF6FF; 
+            --ptl-secondary-glow: rgba(37, 99, 235, 0.15);
+            --ptl-bg-body: #F8FAFC; 
+            --ptl-bg-card: #FFFFFF; 
+            --ptl-text-main: #334155; 
+            --ptl-text-muted: #64748B; 
+            --ptl-border-color: #E2E8F0; 
+            --ptl-border-hover: #CBD5E1;
+            --ptl-good: #10B981; 
+            --ptl-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --ptl-shadow-md: 0 10px 20px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.02);
+            --ptl-shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+            --ptl-transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --ptl-transition-fast: all 0.25s ease-out;
         }
 
         * {
@@ -35,17 +54,24 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-main);
             line-height: 1.6;
             background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
             color: var(--primary);
             line-height: 1.2;
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         a { text-decoration: none; }
@@ -58,12 +84,19 @@
 
         /* Header */
         header {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 15px 0;
             border-bottom: 1px solid #E2E8F0;
             position: sticky;
             top: 0;
             z-index: 100;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .header-inner {
             display: flex;
@@ -71,300 +104,534 @@
             align-items: center;
         }
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.35rem;
+            font-weight: 800;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .logo span {
             color: var(--secondary);
+            transition: color 0.3s ease;
         }
         .header-btn {
             background-color: var(--primary);
             color: var(--white);
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 24px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
         }
-        .header-btn:hover { background-color: var(--secondary); }
+        .header-btn:hover { 
+            background-color: var(--secondary); 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1541888081622-1b1e43d1fb52?auto=format&fit=crop&q=80&w=1920') center/cover;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.96)), url('https://images.unsplash.com/photo-1541888081622-1b1e43d1fb52?auto=format&fit=crop&q=80&w=1920') center/cover;
             color: var(--white);
-            padding: 100px 0;
+            padding: 130px 0 110px;
             text-align: center;
         }
         .hero-pre {
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             font-size: 0.85rem;
             color: var(--accent);
             font-weight: 700;
-            margin-bottom: 15px;
-            display: block;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: fadeInDown 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .hero h1 {
             color: var(--white);
-            font-size: 3.5rem;
-            max-width: 800px;
+            font-size: 4.2rem;
+            max-width: 900px;
             margin: 0 auto 20px auto;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .hero p {
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.2rem;
+            max-width: 680px;
             margin: 0 auto 40px auto;
-            color: #CBD5E1;
+            color: #94A3B8;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
         }
         .hero-btns {
             display: flex;
             gap: 15px;
             justify-content: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
         }
         .btn-primary {
-            background-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #EA580C);
             color: var(--white);
-            padding: 15px 30px;
-            border-radius: 5px;
+            padding: 16px 35px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: background 0.3s;
+            transition: var(--transition-smooth);
             border: none;
             cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.4);
         }
-        .btn-primary:hover { background-color: #EA580C; }
+        .btn-primary:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 15px 35px -5px rgba(249, 115, 22, 0.6);
+        }
         .btn-outline {
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
             color: var(--white);
-            border: 2px solid var(--white);
-            padding: 13px 30px;
-            border-radius: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 35px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
         }
         .btn-outline:hover {
             background-color: var(--white);
             color: var(--primary);
+            border-color: var(--white);
+            transform: translateY(-3px) scale(1.02);
         }
         .trust-bar {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 30px;
+            gap: 50px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 35px;
             flex-wrap: wrap;
+            animation: fadeIn 1.2s ease 1s both;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .trust-item {
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 0.95rem;
             color: #E2E8F0;
+            font-weight: 500;
+        }
+        .trust-item span {
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        /* Direct Answer Section */
-        .section-padding { padding: 80px 0; }
+        /* Direct Answer */
+        .section-padding { padding: 110px 0; }
         .direct-answer {
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 70px;
         }
         .direct-answer-content { flex: 1; }
+        .direct-answer-content h2 { font-size: 2.8rem; letter-spacing: -0.02em; margin-bottom: 25px;}
+        .direct-answer-content p { font-size: 1.1rem; color: var(--text-light); }
         .direct-answer-image {
             flex: 1;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .direct-answer-image:hover { transform: scale(1.02); }
         .direct-answer-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.8s ease;
         }
+        .direct-answer-image:hover img { transform: scale(1.05); }
 
-        /* Benefits Grid */
+        /* Benefits */
         .bg-light { background-color: var(--bg-light); }
         .text-center { text-align: center; }
+        .text-center h2 { font-size: 2.8rem; }
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 60px;
         }
         .benefit-card {
             background: var(--white);
-            padding: 40px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid #E2E8F0;
             border-top: 4px solid var(--secondary);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
-        .benefit-card h3 { font-size: 1.25rem; margin-bottom: 15px; }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+        .benefit-card:hover::before { opacity: 1; }
+        .benefit-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
 
-        /* Interactive Multi-Step Form Styles */
+        /* FORM 1 (DARK/GLASS THEME) */
         .form-section-wrapper {
-            background: var(--paper);
-            padding: 80px 20px;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+            background: linear-gradient(135deg, #070B14 0%, #17233B 100%);
+            padding: 110px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        .form-wrap { max-width: 640px; margin: 0 auto; text-align: left; }
+        .form-section-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 60%);
+            top: -200px; right: -200px;
+            pointer-events: none;
+        }
+        .form-wrap { max-width: 680px; margin: 0 auto; text-align: left; position: relative; z-index: 2; }
         
-        .progress { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:28px; }
-        .p-step { display:flex; align-items:center; gap:8px; }
+        .progress { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 40px; }
+        .p-step { display: flex; align-items: center; gap: 12px; }
         .p-dot {
-            width:26px; height:26px; border-radius:50%;
-            display:flex; align-items:center; justify-content:center;
-            font-size:12px; font-weight:700; color:var(--ink-soft);
-            background:var(--white); border:2px solid var(--line);
-            transition: all .3s ease;
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700; color: #94A3B8;
+            background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .p-label { font-size:12px; font-weight:600; color:var(--ink-soft); white-space:nowrap; transition:color .3s ease; }
-        .p-line { width:36px; height:2px; background:var(--line); margin:0 6px; position:relative; overflow:hidden; }
+        .p-label { font-size: 14px; font-weight: 600; color: #94A3B8; white-space: nowrap; transition: color 0.4s ease; }
+        .p-line { width: 50px; height: 3px; background: rgba(255, 255, 255, 0.1); margin: 0 15px; position: relative; overflow: hidden; border-radius: 2px;}
         .p-line::after {
-            content:""; position:absolute; inset:0; background:var(--good);
-            transform:scaleX(0); transform-origin:left; transition:transform .5s cubic-bezier(.16,.8,.3,1);
+            content: ""; position: absolute; inset: 0; background: var(--accent);
+            transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .p-step.active .p-dot { background:var(--navy); border-color:var(--navy); color:#fff; box-shadow:0 0 0 4px rgba(18,49,143,0.12); transform:scale(1.12); }
-        .p-step.active .p-label { color:var(--navy-deep); }
-        .p-step.done .p-dot { background:var(--good); border-color:var(--good); color:#fff; }
-        .p-step.done .p-label { color:var(--ink); }
-        .p-step.done + .p-line::after { transform:scaleX(1); }
+        .p-step.active .p-dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.2); transform: scale(1.15); }
+        .p-step.active .p-label { color: #fff; font-weight: 700; }
+        .p-step.done .p-dot { background: var(--good); border-color: var(--good); color: #fff; }
+        .p-step.done .p-label { color: #E2E8F0; }
+        .p-step.done + .p-line::after { transform: scaleX(1); }
 
         .form-card {
-            background:var(--white);
-            border:1px solid var(--line);
-            border-radius:20px;
-            box-shadow:var(--shadow-3), var(--shadow-1);
-            padding:34px 30px 28px;
-            position:relative;
-            overflow:hidden;
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            padding: 50px 45px 40px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+            color: #fff;
         }
         .form-card::before {
-            content:""; position:absolute; top:0; left:0; right:0; height:4px;
-            background:linear-gradient(90deg,var(--navy),var(--sky),var(--navy));
-            background-size:200% 100%;
-            animation:sheen 6s linear infinite;
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--secondary));
+            background-size: 200% 100%;
+            animation: sheen 6s linear infinite;
         }
         @keyframes sheen { from{background-position:0% 0;} to{background-position:200% 0;} }
         
-        .eyebrow-form { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--sky); margin:6px 0 8px; }
-        .form-card h3 { font-size:24px; line-height:1.25; margin:0 0 8px; color:var(--navy-deep); letter-spacing:-0.3px; }
-        .form-sub { font-size:14.5px; color:var(--ink-soft); margin:0 0 24px; line-height:1.55; }
+        .eyebrow-form { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+        .form-card h3 { font-size: 28px; line-height: 1.25; margin-bottom: 10px; color: #fff; letter-spacing: -0.01em; }
+        .form-sub { font-size: 16px; color: #94A3B8; margin-bottom: 30px; line-height: 1.5; }
 
-        fieldset { border:none; padding:0; margin:0 0 22px; }
-        legend { font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:12px; padding:0; }
+        fieldset { border: none; padding: 0; margin: 0 0 24px; }
+        legend { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 14px; padding: 0; }
 
-        .options { display:flex; flex-direction:column; gap:10px; }
+        .options { display: flex; flex-direction: column; gap: 14px; }
         .opt {
-            display:flex; align-items:flex-start; gap:12px;
-            border:1.5px solid var(--line); border-radius:14px;
-            padding:14px 44px 14px 16px; cursor:pointer;
-            transition: all .2s ease;
-            background:var(--white);
-            position:relative;
+            display: flex; align-items: flex-start; gap: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px;
+            padding: 20px 48px 20px 20px; cursor: pointer;
+            transition: var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.03);
+            position: relative;
         }
-        .opt:hover { border-color:var(--sky); background:var(--sky-soft); transform:translateY(-1px); }
-        .opt input { margin-top:3px; accent-color:var(--navy); width:16px; height:16px; flex-shrink:0; cursor:pointer; }
-        .opt-text strong { display:block; font-size:14.5px; color:var(--ink); margin-bottom:2px; }
-        .opt-text span { display:block; font-size:13px; color:var(--ink-soft); line-height:1.4; }
+        .opt:hover { border-color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+        .opt input { margin-top: 4px; accent-color: var(--secondary); width: 20px; height: 20px; flex-shrink: 0; cursor: pointer; }
+        .opt-text strong { display: block; font-size: 16px; color: #fff; margin-bottom: 4px; font-weight: 600; }
+        .opt-text span { display: block; font-size: 14px; color: #94A3B8; line-height: 1.5; }
         .opt:has(input:checked) {
-            border-color:var(--navy); background:var(--sky-soft);
-            box-shadow:0 0 0 3px rgba(18,49,143,0.08);
+            border-color: var(--secondary); background: rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+            transform: scale(1.02);
         }
 
-        .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-        .field { margin-bottom:16px; }
-        .field label { display:block; font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .field { margin-bottom: 22px; }
+        .field label { display: block; font-size: 14px; font-weight: 600; color: #E2E8F0; margin-bottom: 8px; }
         .field input, .field select, .field textarea {
-            width:100%; border:1.5px solid var(--line); border-radius:10px;
-            padding:11px 13px; font-size:14.5px; font-family:inherit; color:var(--ink);
-            background:var(--white); transition: all .2s ease;
+            width: 100%; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
+            padding: 15px 18px; font-size: 16px; font-family: inherit; color: #fff;
+            background: rgba(255, 255, 255, 0.05); transition: var(--transition-smooth);
         }
+        .field input::placeholder, .field textarea::placeholder { color: #64748B; }
         .field input:focus, .field select:focus, .field textarea:focus {
-            outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(18,49,143,0.10);
-            transform:translateY(-1px);
+            outline: none; border-color: var(--secondary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
-        .field textarea { resize:vertical; min-height:80px; }
-        .hint { font-size:12px; color:var(--ink-soft); margin-top:5px; }
+        .field select option { color: #000; }
+        .field textarea { resize: vertical; min-height: 100px; }
+        .hint { font-size: 13px; color: #64748B; margin-top: 8px; }
 
-        .actions { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:6px; }
-        .btn-back { background:none; border:none; color:var(--ink-soft); font-weight:600; font-size:13.5px; cursor:pointer; padding:10px 6px; }
-        .btn-back:hover { color:var(--navy); }
+        .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 15px; }
+        .btn-back { background: none; border: none; color: #94A3B8; font-weight: 600; font-size: 15px; cursor: pointer; padding: 10px 8px; transition: color 0.2s ease; }
+        .btn-back:hover { color: #fff; }
         
-        .form-step { display:none; }
-        .form-step.active { display:block; animation:slideIn .4s cubic-bezier(.16,.8,.3,1); }
-        @keyframes slideIn { from{opacity:0;transform:translateX(18px);} to{opacity:1;transform:translateX(0);} }
+        .form-step { display: none; opacity: 0; }
+        .form-step.active { display: block; animation: smoothSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes smoothSlideIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
         .call-strip {
-            text-align:center; margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
-            font-size:13px; color:var(--ink-soft);
+            text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.15);
+            font-size: 14px; color: #94A3B8;
         }
-        .call-strip a { color:var(--navy); font-weight:700; text-decoration:none; }
-        .call-strip a:hover { text-decoration:underline; }
+        .call-strip a { color: var(--accent); font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+        .call-strip a:hover { text-decoration: underline; color: #fff; }
 
-        .confirm { text-align:center; padding:20px 4px 8px; }
+        .confirm { text-align: center; padding: 30px 10px 10px; }
         .confirm-badge {
-            width:56px; height:56px; border-radius:50%; margin:0 auto 18px;
-            background:linear-gradient(135deg,var(--good),#12b381);
-            display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-3);
+            width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--good), #059669);
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.5);
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
-        .confirm-badge svg { width:26px; height:26px; stroke:#fff; }
+        .confirm-badge svg { width: 36px; height: 36px; stroke: #fff; }
         .confirm-summary {
-            text-align:left; background:var(--paper); border:1px solid var(--line);
-            border-radius:14px; padding:16px 18px; margin:22px 0; font-size:13.5px; color:var(--ink);
+            text-align: left; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 22px 25px; margin: 30px 0; font-size: 15px; color: #E2E8F0;
         }
-        .confirm-summary div { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--line); }
-        .confirm-summary div:last-child { border-bottom:none; }
-        .confirm-summary b { color:var(--ink-soft); font-weight:600; }
+        .confirm-summary div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .confirm-summary div:last-child { border-bottom: none; }
+        .confirm-summary b { color: #94A3B8; font-weight: 600; }
 
-        /* Process Steps */
-        .process-steps {
-            max-width: 800px;
-            margin: 50px auto 0 auto;
+        /* ------------------------------------------------------------- */
+        /* SPLIT SECTION (FIVE STEPS + PORTAL FORM) - DESKTOP TO MOBILE  */
+        /* ------------------------------------------------------------- */
+        .split-section {
+            padding: 110px 0;
+            background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%);
+            border-top: 1px solid #E2E8F0;
+            position: relative;
+        }
+        .split-container {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr; /* 45% left / 55% right */
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Split Left: Five Steps */
+        .split-left .text-left {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .split-left .text-left h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .split-left .process-steps {
+            margin: 0; /* Reset margins for grid layout */
+            max-width: 100%;
         }
         .step {
             display: flex;
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 25px; /* slightly tighter gap for split view */
+            margin-bottom: 25px;
             background: var(--white);
-            padding: 25px;
-            border-radius: 8px;
+            padding: 25px; /* slightly tighter padding */
+            border-radius: 20px;
             border: 1px solid #E2E8F0;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+        }
+        .step:hover {
+            transform: translateX(8px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-hover);
         }
         .step-number {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: var(--accent);
             background: #FFF7ED;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            flex-shrink: 0;
+            width: 55px;
+            height: 55px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
         }
-        .step-content h3 { margin-bottom: 5px; font-size: 1.2rem; }
-        .step-content p { color: var(--text-light); margin: 0; }
+        .step-content h3 { margin-bottom: 6px; font-size: 1.3rem; color: var(--primary); }
+        .step-content p { color: var(--text-light); margin: 0; font-size: 1rem; }
 
-        /* Comparison Table */
+        /* Split Right: Portal (Light Theme) */
+        .split-right {
+            position: relative;
+            z-index: 2;
+        }
+        .split-right a { color: var(--ptl-secondary); transition: var(--ptl-transition-fast); }
+        .split-right a:hover { color: #1D4ED8; }
+        
+        .ptl-form-wrap { max-width: 100%; margin: 0; text-align: left; position: relative; }
+        
+        .ptl-progress { 
+            display: flex; align-items: center; justify-content: space-between; 
+            margin-bottom: 45px; max-width: 100%; position: relative;
+        }
+        .ptl-progress::before {
+            content: ''; position: absolute; top: 18px; left: 5%; right: 5%; height: 4px;
+            background: var(--ptl-border-color); z-index: 0; border-radius: 4px;
+        }
+        .ptl-step { display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; z-index: 1; flex: 1; }
+        .ptl-dot {
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 15px; font-weight: 700; color: var(--ptl-text-muted);
+            background: var(--ptl-bg-card); border: 2px solid var(--ptl-border-hover); transition: var(--ptl-transition-smooth);
+        }
+        .ptl-label { font-size: 12px; font-weight: 700; color: var(--ptl-text-muted); transition: var(--ptl-transition-smooth); text-transform: uppercase; letter-spacing: 0.5px;}
+        
+        @keyframes ptl-pulseGlowLight {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.3); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        .ptl-step.active .ptl-dot { border-color: var(--ptl-secondary); color: var(--ptl-secondary); background: var(--ptl-secondary-light); transform: scale(1.15); animation: ptl-pulseGlowLight 2s infinite; }
+        .ptl-step.active .ptl-label { color: var(--ptl-primary); }
+        .ptl-step.done .ptl-dot { background: var(--ptl-secondary); border-color: var(--ptl-secondary); color: #fff; font-size: 0; transform: scale(1.05);}
+        .ptl-step.done .ptl-dot::after { content: "✓"; font-size: 16px; display: block; font-weight: 800;}
+        .ptl-step.done .ptl-label { color: var(--ptl-text-muted); }
+        .ptl-progress-fill { position: absolute; top: 18px; left: 5%; height: 4px; background: var(--ptl-secondary); z-index: 0; transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1); width: 0%; border-radius: 4px; }
+
+        .ptl-form-header-text { text-align: left; margin-bottom: 40px; animation: ptl-fadeInUp 0.6s ease forwards; }
+        .ptl-form-header-text h2 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.02em; color: var(--ptl-primary); }
+        .ptl-form-header-text p { color: var(--ptl-text-muted); font-size: 1.05rem; margin-bottom: 0; }
+
+        .ptl-form-step { display: none; opacity: 0; }
+        .ptl-form-step.active { display: block; animation: ptl-slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes ptl-slideUpFade { from { opacity: 0; transform: translateY(25px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes ptl-fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .ptl-form-card {
+            background: var(--ptl-bg-card); border: 1px solid var(--ptl-border-color); border-radius: 20px;
+            padding: 40px; /* adjusted for split layout */
+            box-shadow: var(--ptl-shadow-lg); position: relative; overflow: hidden;
+        }
+        .ptl-form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--ptl-secondary); }
+
+        @keyframes ptl-floatIcon { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+        .ptl-dropzone { border: 2px dashed var(--ptl-border-hover); border-radius: 16px; padding: 50px 20px; text-align: center; background: var(--ptl-bg-body); transition: var(--ptl-transition-smooth); cursor: pointer; margin-bottom: 30px; position: relative; }
+        .ptl-dropzone:hover { border-color: var(--ptl-secondary); background: var(--ptl-secondary-light); }
+        .ptl-dropzone:hover svg { animation: ptl-floatIcon 1.5s ease-in-out infinite; stroke: var(--ptl-secondary); }
+        .ptl-dropzone svg { width: 50px; height: 50px; stroke: var(--ptl-text-muted); margin-bottom: 15px; transition: var(--ptl-transition-fast); }
+        .ptl-dropzone h4 { color: var(--ptl-primary); font-size: 1.2rem; margin-bottom: 6px; font-weight: 700;}
+        .ptl-dropzone p { color: var(--ptl-text-muted); font-size: 0.95rem; margin:0;}
+
+        .ptl-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .ptl-field { margin-bottom: 24px; position: relative; }
+        .ptl-field label { display: block; font-size: 0.95rem; font-weight: 600; color: var(--ptl-primary); margin-bottom: 10px; }
+        .ptl-field label span { color: #EF4444; } 
+        .ptl-field input, .ptl-field select {
+            width: 100%; background: #FFFFFF; border: 1.5px solid var(--ptl-border-hover); border-radius: 10px;
+            padding: 14px 18px; font-size: 1.05rem; color: var(--ptl-primary); transition: var(--ptl-transition-fast); font-family: inherit; box-shadow: var(--ptl-shadow-sm);
+        }
+        .ptl-field input::placeholder { color: #94A3B8; }
+        .ptl-field input:hover, .ptl-field select:hover { border-color: #94A3B8; }
+        .ptl-field input:focus, .ptl-field select:focus { outline: none; border-color: var(--ptl-secondary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); transform: translateY(-2px); }
+        .ptl-field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto; }
+
+        .ptl-options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 25px; }
+        .ptl-opt-card {
+            background: #FFFFFF; border: 1.5px solid var(--ptl-border-color); border-radius: 12px; padding: 24px 20px;
+            cursor: pointer; transition: var(--ptl-transition-smooth); display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; box-shadow: var(--ptl-shadow-sm);
+        }
+        .ptl-opt-card:hover { border-color: var(--ptl-secondary); transform: translateY(-4px); box-shadow: var(--ptl-shadow-md); }
+        .ptl-opt-card input { display: none; } 
+        .ptl-opt-card strong { color: var(--ptl-primary); font-size: 1.05rem; font-weight: 700; display:block; margin:0;}
+        .ptl-opt-card span { color: var(--ptl-text-muted); font-size: 0.9rem; line-height: 1.5; display:block; margin:0;}
+        .ptl-opt-card.selected { border-color: var(--ptl-secondary); background: var(--ptl-secondary-light); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15); transform: scale(1.02); }
+        .ptl-opt-card.selected::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--ptl-secondary); }
+
+        .ptl-doc-preview {
+            background: #F8FAFC; border: 1px solid var(--ptl-border-color); border-radius: 12px; padding: 25px; color: #000;
+            height: 220px; overflow-y: hidden; position: relative; margin-bottom: 25px;
+        }
+        .ptl-doc-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to bottom, transparent, #F8FAFC); border-radius: 0 0 12px 12px; }
+        .ptl-doc-header { font-weight: 800; border-bottom: 2px solid #CBD5E1; padding-bottom: 10px; margin-bottom: 10px; font-size: 1.15rem;}
+        .ptl-doc-body { font-size: 0.8rem; color: #334155; line-height: 1.6; font-family: 'Times New Roman', serif;}
+
+        .ptl-checkbox-label { display: flex; align-items: flex-start; gap: 15px; font-size: 0.95rem; color: var(--ptl-text-main); cursor: pointer; line-height: 1.5; }
+        .ptl-checkbox-label input {
+            appearance: none; width: 24px; height: 24px; min-width: 24px; border: 2px solid var(--ptl-border-hover); border-radius: 6px;
+            background: #FFFFFF; cursor: pointer; position: relative; transition: var(--ptl-transition-fast); margin-top:2px;
+        }
+        .ptl-checkbox-label input:hover { border-color: var(--ptl-secondary); }
+        .ptl-checkbox-label input:checked { background: var(--ptl-secondary); border-color: var(--ptl-secondary); }
+        @keyframes ptl-drawCheck { 0% { width: 0; height: 0; opacity: 0; } 50% { width: 6px; height: 0; opacity: 1; } 100% { width: 6px; height: 12px; opacity: 1; } }
+        .ptl-checkbox-label input:checked::after { content: ''; position: absolute; left: 7px; top: 3px; border: solid white; border-width: 0 3px 3px 0; transform: rotate(45deg); animation: ptl-drawCheck 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        .ptl-form-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 35px;}
+        .ptl-btn-back { background: none; border: none; color: var(--ptl-text-muted); font-size: 1rem; cursor: pointer; transition: var(--ptl-transition-fast); font-weight: 600; padding: 10px; margin-left: -10px; }
+        .ptl-btn-back:hover { color: var(--ptl-primary); transform: translateX(-6px); }
+        .ptl-btn-next, .ptl-btn-submit {
+            position: relative; overflow: hidden; background: var(--ptl-primary); color: #fff; padding: 14px 30px; border-radius: 8px;
+            font-weight: 600; font-size: 1rem; border: none; cursor: pointer; transition: var(--ptl-transition-smooth); z-index: 1;
+        }
+        .ptl-btn-submit { background: var(--ptl-secondary); }
+        .ptl-btn-next:hover, .ptl-btn-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 20px -5px rgba(15, 23, 42, 0.25); }
+        .ptl-btn-next:hover { background-color: #1E293B; }
+        .ptl-btn-submit:hover { background-color: #1D4ED8; box-shadow: 0 12px 20px -5px rgba(37, 99, 235, 0.35); }
+
+        .ptl-confirm { text-align: center; padding: 40px 20px; }
+        .ptl-confirm-badge {
+            width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 25px; background: #ECFDF5; border: 2px solid var(--ptl-good);
+            display: flex; align-items: center; justify-content: center; position: relative; animation: ptl-badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes ptl-badgePop { 0% { transform: scale(0); opacity: 0;} 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1;} }
+        .ptl-confirm-badge svg { width: 40px; height: 40px; stroke: var(--ptl-good); }
+
+        /* Comparison Table (Responsive Stacked Cards) */
         .comparison-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-top: 50px;
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid #E2E8F0;
         }
         .comparison-table th, .comparison-table td {
-            padding: 20px;
+            padding: 22px 25px;
             text-align: left;
             border-bottom: 1px solid #E2E8F0;
         }
@@ -372,62 +639,87 @@
             background-color: var(--primary);
             color: var(--white);
             font-weight: 600;
+            font-size: 1.05rem;
         }
-        .comparison-table th:first-child { width: 25%; background-color: #1E293B; }
+        .comparison-table th:first-child { width: 30%; background-color: #1E293B; }
         .comparison-table tr:last-child td { border-bottom: none; }
-        .tcs-col {
-            background-color: #EFF6FF;
-            font-weight: 600;
-            color: var(--secondary);
-        }
+        .comparison-table tr { transition: background-color 0.2s ease; }
+        .comparison-table tr:hover td { background-color: #F8FAFC; }
+        .comparison-table .tcs-col { background-color: #EFF6FF; font-weight: 600; color: var(--secondary); }
         
-        /* Reviews */
+        /* Reviews Grid */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
         .review-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background: var(--white); padding: 40px 35px; border-radius: 20px;
+            box-shadow: var(--shadow-subtle); border: 1px solid #E2E8F0; transition: var(--transition-smooth);
         }
-        .stars { color: #F59E0B; font-size: 1.2rem; margin-bottom: 15px; }
+        .review-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(37, 99, 235, 0.2); }
+        .stars { color: #F59E0B; font-size: 1.35rem; margin-bottom: 15px; letter-spacing: 2px; }
 
         /* Final CTA */
         .final-cta {
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary), #1E293B);
+            color: var(--white); text-align: center; padding: 100px 20px; position: relative; overflow: hidden;
         }
-        .final-cta h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
-        .final-cta p { font-size: 1.1rem; color: #CBD5E1; max-width: 600px; margin: 0 auto 40px auto; }
+        .final-cta h2 { color: var(--white); font-size: 2.8rem; margin-bottom: 20px; }
+        .final-cta p { font-size: 1.15rem; color: #94A3B8; max-width: 650px; margin: 0 auto 40px auto; }
 
         /* Footer */
         footer {
-            background-color: #0B1120;
-            color: #94A3B8;
-            padding: 40px 0;
-            text-align: center;
-            font-size: 0.9rem;
+            background-color: #090D16; color: #64748B; padding: 50px 0; text-align: center; font-size: 0.95rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .footer-links {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .footer-links a { color: #94A3B8; transition: color 0.3s; }
+        .footer-links { margin-bottom: 25px; display: flex; justify-content: center; gap: 30px; }
+        .footer-links a { color: #94A3B8; transition: color 0.2s ease; font-weight: 500; }
         .footer-links a:hover { color: var(--white); }
 
+        /* MEDIA QUERIES FOR MOBILE RESPONSIVENESS */
+        @media (max-width: 992px) {
+            .split-container {
+                grid-template-columns: 1fr; /* Stack columns on tablet/mobile */
+                gap: 50px;
+            }
+            .split-left .text-left { text-align: center; }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.8rem; }
             .hero-btns { flex-direction: column; }
             .direct-answer { flex-direction: column; }
-            .comparison-table { display: block; overflow-x: auto; }
+            
+            .form-card { padding: 40px 25px; }
+            .ptl-grid2, .ptl-options-grid { grid-template-columns: 1fr; }
+            .ptl-form-card { padding: 30px 20px; }
+            .ptl-label { display: none; }
+            .split-left .text-left h2 { font-size: 2.2rem; }
+
+            /* Mobile Stacked Card Table */
+            .comparison-table { border: none; box-shadow: none; background: transparent; }
+            .comparison-table thead { display: none; }
+            .comparison-table tr {
+                display: block; margin-bottom: 20px; background: var(--white);
+                border-radius: 16px; box-shadow: var(--shadow-subtle); border: 1px solid #E2E8F0; overflow: hidden;
+            }
+            .comparison-table td {
+                display: flex; flex-direction: column; padding: 16px 20px;
+                text-align: left; border-bottom: 1px solid #E2E8F0; font-size: 1rem;
+            }
+            .comparison-table td:last-child { border-bottom: none; }
+            .comparison-table td:first-child {
+                background-color: var(--primary); color: var(--white);
+                font-size: 1.15rem; padding: 15px 20px;
+            }
+            .comparison-table td:first-child strong { font-weight: 700; }
+            .comparison-table td:not(:first-child)::before {
+                content: attr(data-label); font-size: 0.75rem; text-transform: uppercase;
+                letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; color: var(--text-muted);
+            }
+            .comparison-table .tcs-col { background-color: #EFF6FF; color: var(--secondary); font-weight: 600; }
+            .comparison-table .tcs-col::before { color: var(--secondary); }
         }
     </style>
 </head>
@@ -436,7 +728,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo">Total Closing <span>Solutions</span></div>
-            <a href="#" class="header-btn">Schedule Session</a>
+            <a href="#start-closing" class="header-btn">Schedule Session</a>
         </div>
     </header>
 
@@ -446,8 +738,8 @@
             <h1>Removing paperwork hurdles, so you can build faster.</h1>
             <p>Seamless permit filing, Notice of Commencement (NOC) prep, and Remote Online Notarization (RON). Get your docs legally stamped without ever leaving the job site.</p>
             <div class="hero-btns">
-                <a href="#" class="btn-primary">Schedule Your Session</a>
-                <a href="#" class="btn-outline">Scan QR to Begin</a>
+                <a href="#start-closing" class="btn-primary">Schedule Your Session</a>
+                <a href="#permit-portal" class="btn-outline">Open Portal</a>
             </div>
             
             <div class="trust-bar">
@@ -469,7 +761,7 @@
             <div class="direct-answer-content">
                 <h2>Why use a specialized virtual notary for contractor permits?</h2>
                 <p>General notaries don't understand construction documents. We do. Total Closing Solutions specializes in high-stakes contractor filings. We handle the complex paperwork, verify identities remotely, and provide the tamper-evident digital seals you need to get your permits approved—preventing costly technical delays at the building department.</p>
-                <p style="margin-top: 15px; font-weight: 600; color: var(--secondary);">Helping contractors close permits in minutes, not days.</p>
+                <p style="margin-top: 20px; font-weight: 600; color: var(--secondary); font-size: 1.15rem;">Helping contractors close permits in minutes, not days.</p>
             </div>
             <div class="direct-answer-image">
                 <img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?auto=format&fit=crop&q=80&w=800" alt="Contractor looking at plans">
@@ -481,22 +773,22 @@
         <div class="container">
             <div class="text-center">
                 <h2>Built for the speed of construction.</h2>
-                <p style="color: var(--text-light);">We've designed our platform to keep your crews moving.</p>
+                <p style="color: var(--text-light); font-size: 1.1rem;">We've designed our platform to keep your crews moving.</p>
             </div>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div style="font-size: 2rem; margin-bottom: 15px;">⏱️</div>
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">⏱️</div>
                     <h3>Zero Travel Time</h3>
                     <p>No driving to a notary office. Connect instantly via your phone from the job site. Flexible scheduling with agents ready in minutes.</p>
                 </div>
                 <div class="benefit-card">
-                    <div style="font-size: 2rem; margin-bottom: 15px;">✓</div>
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">✓</div>
                     <h3>Error-Free Filings</h3>
                     <p>We specialize in contractor docs. We catch the nuances that general notaries miss, eliminating permit rejections and closing delays.</p>
                 </div>
                 <div class="benefit-card">
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🔒</div>
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">🔒</div>
                     <h3>Bank-Grade Security</h3>
                     <p>Tamper-evident digital seals with complete KBA identity verification and audio audit trails. 100% compliant with state digital guidelines.</p>
                 </div>
@@ -504,12 +796,12 @@
         </div>
     </section>
 
-    <!-- NEW INTERACTIVE FORM SECTION PLACED ABOVE "FIVE STEPS" -->
-    <section class="form-section-wrapper">
+    <!-- FORM 1: "START YOUR CLOSING" (DARK/GLASS THEME) -->
+    <section class="form-section-wrapper" id="start-closing">
         <div class="container form-wrap">
-            <div class="text-center" style="margin-bottom: 35px;">
-                <h2 style="color: var(--navy-deep); font-size: 2.2rem; margin-bottom: 10px;">Start Your Closing</h2>
-                <p style="color: var(--ink-soft); font-size: 1.1rem;">Secure your virtual notary session in minutes to keep your permits moving.</p>
+            <div class="text-center" style="margin-bottom: 45px;">
+                <h2 style="color: #fff; font-size: 3rem; margin-bottom: 12px;">Start Your Closing</h2>
+                <p style="color: #94A3B8; font-size: 1.15rem;">Secure your virtual notary session in minutes to keep your permits moving.</p>
             </div>
 
             <div class="progress" id="progressBar">
@@ -561,20 +853,20 @@
                     <div class="grid2">
                         <div class="field">
                             <label for="firstName">First name</label>
-                            <input type="text" id="firstName" name="firstName" required>
+                            <input type="text" id="firstName" name="firstName" placeholder="e.g., John" required>
                         </div>
                         <div class="field">
                             <label for="lastName">Last name</label>
-                            <input type="text" id="lastName" name="lastName" required>
+                            <input type="text" id="lastName" name="lastName" placeholder="e.g., Doe" required>
                         </div>
                     </div>
                     <div class="field">
                         <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="john@company.com" required>
                     </div>
                     <div class="field">
                         <label for="phone">Phone number</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required>
                         <div class="hint">We'll text you if your signer or agent needs to reach you before the session.</div>
                     </div>
 
@@ -594,7 +886,7 @@
                         <div class="field">
                             <label for="docType">Document type</label>
                             <select id="docType" name="docType" required>
-                                <option value="" disabled selected>Select one</option>
+                                <option value="" disabled selected>Select one...</option>
                                 <option>Contractor / Permit Document</option>
                                 <option>Real Estate Closing / Deed</option>
                                 <option>Estate Planning (Will, Trust, POA)</option>
@@ -626,69 +918,254 @@
                 <div class="form-step" id="step-confirm">
                     <div class="confirm">
                         <div class="confirm-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                         </div>
                         <div class="eyebrow-form" style="text-align:center;">You're on the calendar</div>
                         <h3>Thanks — we've got it from here.</h3>
                         <p class="form-sub">A member of our team will confirm your session and send your secure signing link shortly.</p>
                         <div class="confirm-summary" id="summaryBox"></div>
-                        <div class="call-strip">Need this sooner? <a href="tel:+18773698350">Call us at (877) 369-8350</a></div>
+                        <div class="call-strip" style="border-top:none;">Need this sooner? <a href="tel:+18773698350">Call us at (877) 369-8350</a></div>
                     </div>
                 </div>
             </form>
         </div>
     </section>
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2>Five steps to your permit approval.</h2>
-            </div>
+    <!-- NEW SPLIT SECTION: FIVE STEPS + PORTAL -->
+    <section class="split-section" id="permit-portal">
+        <div class="container split-container">
             
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Upload Your Docs</h3>
-                        <p>Send your permit applications, NOCs, or lien waivers through our secure portal.</p>
+            <!-- LEFT COLUMN: FIVE STEPS -->
+            <div class="split-left">
+                <div class="text-left">
+                    <h2>Five steps to your permit approval.</h2>
+                    <p style="color: var(--text-light); font-size: 1.15rem;">Fast, secure, and fully compliant.</p>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Upload Your Docs</h3>
+                            <p>Send your permit applications, NOCs, or lien waivers through our secure portal.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Identity Verification</h3>
+                            <p>Complete a quick Knowledge-Based Authentication (KBA) check directly from your phone.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Connect Live</h3>
+                            <p>Jump on a secure video session with Garrett or one of our certified virtual agents.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>E-Sign & Seal</h3>
+                            <p>Review and digitally sign. We apply our tamper-evident notary seal on the spot.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>File Your Permit</h3>
+                            <p>You receive the finalized, compliant documents instantly, ready to hand off to the building department.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Identity Verification</h3>
-                        <p>Complete a quick Knowledge-Based Authentication (KBA) check directly from your phone.</p>
+            </div>
+
+            <!-- RIGHT COLUMN: UPLOAD & PROCESS PORTAL -->
+            <div class="split-right">
+                <div class="ptl-form-wrap">
+                    
+                    <div class="ptl-form-header-text">
+                        <h2>Upload & Process Portal</h2>
+                        <p>Run your permit documents through our secure 5-step processing pipeline.</p>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Connect Live</h3>
-                        <p>Jump on a secure video session with Garrett or one of our certified virtual agents.</p>
+
+                    <div class="ptl-progress" id="ptl-progressBar">
+                        <div class="ptl-progress-fill" id="ptl-progressFill"></div>
+                        <div class="ptl-step active" data-step="1"><div class="ptl-dot">1</div><div class="ptl-label">Upload</div></div>
+                        <div class="ptl-step" data-step="2"><div class="ptl-dot">2</div><div class="ptl-label">Identity</div></div>
+                        <div class="ptl-step" data-step="3"><div class="ptl-dot">3</div><div class="ptl-label">Connect</div></div>
+                        <div class="ptl-step" data-step="4"><div class="ptl-dot">4</div><div class="ptl-label">E-Sign</div></div>
+                        <div class="ptl-step" data-step="5"><div class="ptl-dot">5</div><div class="ptl-label">File</div></div>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>E-Sign & Seal</h3>
-                        <p>Review and digitally sign. We apply our tamper-evident notary seal on the spot.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>File Your Permit</h3>
-                        <p>You receive the finalized, compliant documents instantly, ready to hand off to the building department.</p>
-                    </div>
+
+                    <form id="permitForm" class="ptl-form-card" novalidate>
+                        
+                        <!-- PORTAL STEP 1: Upload Your Docs -->
+                        <div class="ptl-form-step active" id="ptl-step-1">
+                            <div class="ptl-dropzone" onclick="document.getElementById('ptl-fileUpload').click()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                <h4>Drag & Drop your files here</h4>
+                                <p>or click to browse from your device (PDF, JPG, PNG)</p>
+                                <input type="file" id="ptl-fileUpload" style="display:none;" multiple required>
+                            </div>
+                            
+                            <div class="ptl-field" style="margin-top: 30px;">
+                                <label>Document Type <span>*</span></label>
+                                <select id="ptl-docType" required>
+                                    <option value="" disabled selected>Select what you are uploading...</option>
+                                    <option>Notice of Commencement (NOC)</option>
+                                    <option>Permit Application</option>
+                                    <option>Lien Waiver</option>
+                                    <option>Building Plans / Revisions</option>
+                                </select>
+                            </div>
+
+                            <div class="ptl-form-actions" style="justify-content: flex-end;">
+                                <button type="button" class="ptl-btn-next" onclick="goToPortal(2)">Continue to Verification</button>
+                            </div>
+                        </div>
+
+                        <!-- PORTAL STEP 2: Identity Verification -->
+                        <div class="ptl-form-step" id="ptl-step-2">
+                            <p style="color: var(--ptl-text-muted); font-size: 0.95rem; margin-bottom: 25px;">To comply with Florida state RON laws, we must verify your identity. This is a soft inquiry and does not affect your credit.</p>
+                            
+                            <div class="ptl-grid2">
+                                <div class="ptl-field">
+                                    <label>Legal First Name <span>*</span></label>
+                                    <input type="text" id="ptl-fname" placeholder="First Name" required>
+                                </div>
+                                <div class="ptl-field">
+                                    <label>Legal Last Name <span>*</span></label>
+                                    <input type="text" id="ptl-lname" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="ptl-grid2">
+                                <div class="ptl-field">
+                                    <label>Date of Birth <span>*</span></label>
+                                    <input type="date" id="ptl-dob" required>
+                                </div>
+                                <div class="ptl-field">
+                                    <label>Last 4 of SSN <span>*</span></label>
+                                    <input type="password" id="ptl-ssn" placeholder="••••" maxlength="4" required>
+                                </div>
+                            </div>
+
+                            <div class="ptl-field" style="margin-bottom: 0;">
+                                <label>Current Home Address <span>*</span></label>
+                                <input type="text" id="ptl-homeAddress" placeholder="Street Address" required>
+                            </div>
+
+                            <div class="ptl-form-actions">
+                                <button type="button" class="ptl-btn-back" onclick="goToPortal(1)">← Back</button>
+                                <button type="button" class="ptl-btn-next" onclick="goToPortal(3)">Run KBA Check</button>
+                            </div>
+                        </div>
+
+                        <!-- PORTAL STEP 3: Connect Live -->
+                        <div class="ptl-form-step" id="ptl-step-3">
+                            <div class="ptl-options-grid">
+                                <label class="ptl-opt-card selected" onclick="selectRadioCard(this)">
+                                    <input type="radio" name="connectType" value="now" checked required>
+                                    <strong>Connect Now</strong>
+                                    <span>Agent available. Wait time: < 2 mins.</span>
+                                </label>
+                                <label class="ptl-opt-card" onclick="selectRadioCard(this)">
+                                    <input type="radio" name="connectType" value="later">
+                                    <strong>Schedule for Later</strong>
+                                    <span>Pick a date and time for your crew.</span>
+                                </label>
+                            </div>
+
+                            <div class="ptl-field" style="margin-bottom: 0;">
+                                <label>Phone Number for Video Link <span>*</span></label>
+                                <input type="tel" id="ptl-smsPhone" placeholder="(555) 555-5555" required>
+                                <span style="font-size: 0.85rem; color: var(--ptl-text-muted); display: block; margin-top: 8px;">We will text you a secure Zoom/WebRTC link to join from your mobile device.</span>
+                            </div>
+
+                            <div class="ptl-form-actions">
+                                <button type="button" class="ptl-btn-back" onclick="goToPortal(2)">← Back</button>
+                                <button type="button" class="ptl-btn-next" onclick="goToPortal(4)">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- PORTAL STEP 4: E-Sign & Seal -->
+                        <div class="ptl-form-step" id="ptl-step-4">
+                            <div class="ptl-doc-preview">
+                                <div class="ptl-doc-header">NOTICE OF COMMENCEMENT</div>
+                                <div class="ptl-doc-body">
+                                    State of Florida, County of Hillsborough.<br><br>
+                                    The undersigned hereby gives notice that improvement will be made to certain real property, and in accordance with Chapter 713, Florida Statutes, the following information is provided in this Notice of Commencement.<br><br>
+                                    1. Description of property: Lot 4, Block B, Sunny Estates...<br>
+                                    2. General description of improvement: Roof replacement and structural repair...<br>
+                                    3. Owner information: John Doe, 123 Main St...<br><br>
+                                    (Simulated document text. In the live portal, your actual uploaded document will appear here for review and digital signature placement.)
+                                </div>
+                            </div>
+
+                            <label class="ptl-checkbox-label" style="margin-top: 25px; background: var(--ptl-bg-body); padding: 20px; border-radius: 12px; border: 1px solid var(--ptl-border-color);">
+                                <input type="checkbox" id="ptl-esignConsent" required>
+                                <span>I consent to use electronic records and signatures, and I authorize Total Closing Solutions to append my digital signature and a MISMO-certified tamper-evident notary seal to this document.</span>
+                            </label>
+
+                            <div class="ptl-form-actions">
+                                <button type="button" class="ptl-btn-back" onclick="goToPortal(3)">← Back</button>
+                                <button type="button" class="ptl-btn-next" onclick="goToPortal(5)">Sign Document</button>
+                            </div>
+                        </div>
+
+                        <!-- PORTAL STEP 5: File Your Permit -->
+                        <div class="ptl-form-step" id="ptl-step-5">
+                            <p style="color: var(--ptl-text-muted); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6;">Your documents have been successfully notarized. Select the jurisdiction below to initiate the electronic filing process, or download the sealed PDFs.</p>
+                            
+                            <div class="ptl-field">
+                                <label>Filing Jurisdiction (County/City) <span>*</span></label>
+                                <select id="ptl-jurisdiction" required>
+                                    <option value="" disabled selected>Select Building Department...</option>
+                                    <option>Hillsborough County</option>
+                                    <option>Pinellas County</option>
+                                    <option>City of St. Petersburg</option>
+                                    <option>City of Tampa</option>
+                                    <option>Miami-Dade County</option>
+                                    <option>Orange County</option>
+                                    <option>Other (Manual Filing)</option>
+                                </select>
+                            </div>
+
+                            <div class="ptl-field" style="margin-bottom: 0;">
+                                <label>Permit / Application Number (If known)</label>
+                                <input type="text" id="ptl-permitNum" placeholder="e.g. PRM-2026-08492">
+                            </div>
+
+                            <div class="ptl-form-actions">
+                                <button type="button" class="ptl-btn-back" onclick="goToPortal(4)">← Back</button>
+                                <button type="submit" class="ptl-btn-submit">Submit Filing</button>
+                            </div>
+                        </div>
+
+                        <!-- PORTAL CONFIRMATION -->
+                        <div class="ptl-form-step" id="ptl-step-confirm">
+                            <div class="ptl-confirm">
+                                <div class="ptl-confirm-badge">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <h2 style="font-size: 2.2rem; margin-bottom: 15px; font-weight: 700; letter-spacing:-0.02em; color: var(--ptl-primary);">Permit Filed Successfully</h2>
+                                <p style="color: var(--ptl-text-muted); margin-bottom: 35px; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">Your notarized documents have been routed to the selected building department. You will receive an email confirmation and tracking link shortly.</p>
+                                <button type="button" class="ptl-btn-next" onclick="location.reload()">Start New Filing</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding bg-light">
+    <!-- REMAINDER OF PAGE CONTENT -->
+    <section class="section-padding">
         <div class="container">
             <div class="text-center">
-                <h2>Traditional Notary vs. Total Closing Solutions</h2>
+                <h2 style="font-size: 2.8rem;">Traditional Notary vs. Total Closing Solutions</h2>
             </div>
             
             <table class="comparison-table">
@@ -702,55 +1179,55 @@
                 <tbody>
                     <tr>
                         <td><strong>Location</strong></td>
-                        <td>Drive to their office</td>
-                        <td class="tcs-col">Anywhere (From the job site)</td>
+                        <td data-label="Traditional Walk-in Notary">Drive to their office</td>
+                        <td class="tcs-col" data-label="TCS Virtual Services">Anywhere (From the job site)</td>
                     </tr>
                     <tr>
                         <td><strong>Scheduling</strong></td>
-                        <td>Fixed business hours</td>
-                        <td class="tcs-col">24/7 Rapid Turnaround</td>
+                        <td data-label="Traditional Walk-in Notary">Fixed business hours</td>
+                        <td class="tcs-col" data-label="TCS Virtual Services">24/7 Rapid Turnaround</td>
                     </tr>
                     <tr>
                         <td><strong>Expertise</strong></td>
-                        <td>General documents</td>
-                        <td class="tcs-col">Real Estate & Contractor specialized</td>
+                        <td data-label="Traditional Walk-in Notary">General documents</td>
+                        <td class="tcs-col" data-label="TCS Virtual Services">Real Estate & Contractor specialized</td>
                     </tr>
                     <tr>
                         <td><strong>Security</strong></td>
-                        <td>Physical stamp (can be lost/faked)</td>
-                        <td class="tcs-col">Tamper-evident digital seal & KBA</td>
+                        <td data-label="Traditional Walk-in Notary">Physical stamp (can be lost/faked)</td>
+                        <td class="tcs-col" data-label="TCS Virtual Services">Tamper-evident digital seal & KBA</td>
                     </tr>
                     <tr>
                         <td><strong>Turnaround</strong></td>
-                        <td>Hours wasted off-site</td>
-                        <td class="tcs-col">Completed in minutes</td>
+                        <td data-label="Traditional Walk-in Notary">Hours wasted off-site</td>
+                        <td class="tcs-col" data-label="TCS Virtual Services">Completed in minutes</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section class="section-padding">
+    <section class="section-padding bg-light">
         <div class="container">
             <div class="text-center">
-                <h2>Trusted by Contractors & Builders Nationwide.</h2>
+                <h2 style="font-size: 2.8rem;">Trusted by Contractors & Builders Nationwide.</h2>
             </div>
             
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>"Garrett and his team are a lifesaver. We used to lose half a day getting NOCs notarized. Now my supers do it from the truck in 10 minutes."</p>
-                    <p style="margin-top: 15px; font-weight: 600;">- Mark T., General Contractor</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">— Mark T., General Contractor</p>
                 </div>
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>"Finally, a notary that actually understands construction permit documents. They caught a missing field that would have delayed our foundation pour by a week."</p>
-                    <p style="margin-top: 15px; font-weight: 600;">- Sarah H., Project Manager</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">— Sarah H., Project Manager</p>
                 </div>
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>"Fast, secure, and incredibly convenient. We run all our high-stakes real estate and contractor paperwork through Total Closing Solutions now."</p>
-                    <p style="margin-top: 15px; font-weight: 600;">- David R., Custom Home Builder</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">— David R., Custom Home Builder</p>
                 </div>
             </div>
         </div>
@@ -760,7 +1237,7 @@
         <div class="container">
             <h2>Stop letting paperwork delay your starts.</h2>
             <p>Don't let a missing signature derail your permit. Book a session with Garrett for a fast, accurate, and fully compliant notarization experience.</p>
-            <a href="#" class="btn-primary" style="background-color: var(--white); color: var(--primary);">Schedule Your Session Now</a>
+            <a href="#start-closing" class="btn-primary" style="padding: 18px 45px; font-size: 1.15rem;">Schedule Your Session Now</a>
         </div>
     </section>
 
@@ -773,13 +1250,16 @@
             </div>
             <p>NEAR ME NOTARY LLC d/b/a Total Closing Solutions | 5922 9th Ave N, St. Petersburg, FL 33710</p>
             <p>info@lc.totalclosingsolutions.com | +1 877-369-8350</p>
-            <p style="margin-top: 20px;">© 2026 Total Closing Solutions LLC. All rights reserved.</p>
+            <p style="margin-top: 25px;">© 2026 Total Closing Solutions LLC. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // ==========================================
+        // FORM 1 LOGIC (START YOUR CLOSING - DARK THEME)
+        // ==========================================
         function updateProgress(current){
-            document.querySelectorAll('.p-step').forEach(el=>{
+            document.querySelectorAll('#progressBar .p-step').forEach(el=>{
                 const s = parseInt(el.dataset.step);
                 el.classList.remove('active','done');
                 if(s < current) el.classList.add('done');
@@ -800,12 +1280,20 @@
                 if(!first || !last || !email || !phone) return;
             }
 
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step-'+stepNum).classList.add('active');
+            document.querySelectorAll('#intakeForm .form-step').forEach(s => {
+                s.style.opacity = '0';
+                s.classList.remove('active');
+            });
+            
+            setTimeout(() => {
+                const nextStep = document.getElementById('step-'+stepNum);
+                nextStep.classList.add('active');
+            }, 50);
             
             if(stepNum <= 3) {
                 document.getElementById('progressBar').style.display = 'flex';
                 updateProgress(stepNum);
+                document.getElementById('start-closing').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
@@ -830,9 +1318,112 @@
                 <div><b>Preferred Date</b><span>${data.date}</span></div>
             `;
 
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('#intakeForm .form-step').forEach(s => s.classList.remove('active'));
             document.getElementById('step-confirm').classList.add('active');
             document.getElementById('progressBar').style.display = 'none';
+        });
+
+        // ==========================================
+        // FORM 2 LOGIC (PORTAL - LIGHT THEME)
+        // ==========================================
+        function selectRadioCard(labelEl) {
+            document.querySelectorAll('.ptl-opt-card').forEach(card => card.classList.remove('selected'));
+            labelEl.classList.add('selected');
+        }
+
+        function updatePortalProgress(current){
+            document.querySelectorAll('.ptl-step').forEach(el=>{
+                const s = parseInt(el.dataset.step);
+                el.classList.remove('active','done');
+                if(s < current) el.classList.add('done');
+                if(s === current) el.classList.add('active');
+            });
+            const fillWidths = ['0%', '25%', '50%', '75%', '100%'];
+            document.getElementById('ptl-progressFill').style.width = fillWidths[current-1] || '100%';
+        }
+
+        function validatePortalStep(stepNum) {
+            let isValid = true;
+            const stepEl = document.getElementById('ptl-step-' + stepNum);
+            
+            const requiredInputs = stepEl.querySelectorAll('input[required], select[required]');
+            
+            requiredInputs.forEach(input => {
+                if(!input.value || (input.type === 'checkbox' && !input.checked)) {
+                    isValid = false;
+                    if(input.type === 'file') {
+                        input.parentElement.style.borderColor = '#EF4444';
+                        input.parentElement.style.background = '#FEF2F2';
+                    } else {
+                        input.style.borderColor = '#EF4444'; 
+                        input.style.boxShadow = '0 0 0 4px rgba(239, 68, 68, 0.15)';
+                    }
+                } else {
+                    if(input.type === 'file') {
+                        input.parentElement.style.borderColor = 'var(--ptl-secondary)';
+                        input.parentElement.style.background = 'var(--ptl-secondary-light)';
+                    } else {
+                        input.style.borderColor = 'var(--ptl-border-hover)';
+                        input.style.boxShadow = 'var(--ptl-shadow-sm)';
+                    }
+                }
+            });
+            return isValid;
+        }
+
+        function goToPortal(stepNum){
+            const currentStep = document.querySelector('.ptl-form-step.active');
+            const currentStepNum = parseInt(currentStep.id.replace('ptl-step-', ''));
+            
+            if (stepNum > currentStepNum) {
+                if (!validatePortalStep(currentStepNum)) return;
+            }
+
+            document.querySelectorAll('.ptl-form-step').forEach(s => {
+                s.style.opacity = '0';
+                s.classList.remove('active');
+            });
+            
+            setTimeout(() => {
+                const nextStep = document.getElementById('ptl-step-'+stepNum);
+                nextStep.classList.add('active');
+                nextStep.style.opacity = '1';
+            }, 50);
+            
+            if(stepNum <= 5) {
+                updatePortalProgress(stepNum);
+                document.getElementById('permit-portal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        document.querySelectorAll('#permitForm input, #permitForm select').forEach(el => {
+            el.addEventListener('change', function() {
+                if(this.type === 'file' && this.value) {
+                    this.parentElement.style.borderColor = 'var(--ptl-secondary)';
+                    this.parentElement.style.background = 'var(--ptl-secondary-light)';
+                    this.parentElement.querySelector('h4').innerText = "File Attached ✓";
+                    this.parentElement.querySelector('h4').style.color = "var(--ptl-secondary)";
+                } else {
+                    this.style.borderColor = 'var(--ptl-border-hover)';
+                    this.style.boxShadow = 'var(--ptl-shadow-sm)';
+                }
+            });
+            el.addEventListener('input', function() {
+                if(this.type !== 'file') {
+                    this.style.borderColor = 'var(--ptl-border-hover)';
+                    this.style.boxShadow = 'var(--ptl-shadow-sm)';
+                }
+            });
+        });
+
+        document.getElementById('permitForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            if(!validatePortalStep(5)) return;
+
+            document.querySelectorAll('.ptl-form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('ptl-step-confirm').classList.add('active');
+            document.getElementById('ptl-progressBar').style.display = 'none';
+            document.getElementById('permit-portal').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>
